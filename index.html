@@ -2,14 +2,27 @@
 <html lang="it">
 <head>
     <style>
-        body{
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0;
-            background-color: #f5f5f5;
-            color: #333;
+        :root{
+            --bg: #f5f5f5;
+            --text: #333;
+            --primary: #2c3e50;
+            --accent: #2980b9;
         }
-        header{
-            background-color: #2c3e50;
+        body.dark{
+            --bg: #1c1c1c;
+            --text: #f5f5f5;
+            --primary: #141414;
+            --accent: #00aaff;
+        }        
+        body{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: backgroun 0.3s, color 0.3s;
+        }
+        header, footer{
+            background-color: var(--primary);
             color: white;
             text-align: center;
             padding: 20px 40px;
@@ -18,54 +31,70 @@
             padding: 30px 20px;
             max-width: 800px;
             margin: auto;
+            animation: fadeIn 0.7s ease-in-out;
         }
         h2{
-            color: #2c3e50;
+            color: var(--primary);
         }
-        ul li{
-            list-style: none;
-            padding: 0;
+        ul{
+            padding-left: 20px;
         }
-        ul li{
+        li{
             margin-bottom: 10px;
         }
         a{
-            color: #2980b9;
+            color: var(--accent);
             text-decoration: none;
         }
-        footer{
-            text-align: center;
-            padding: 20px;
-            background-color: #2c3e50;
-            color: white;
+        a:hover{
+            text-decoration: underline;
         }
-
-
-
-
+      .toggle-dark{
+        margin-top: 10px;
+        cursor: pointer;
+        background: var(--accent);
+        border: none;
+        color: white;
+        padding: 10px, 20px;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
     </style>
     <meta charset="UTF-8">
     <title>Porfolio di Francesco</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Francesco | Web Developer</h1>
         <p>Specializzato in HTML, CSS e Web Design</p>
+        <button class="toggle-dark" onclick="toggleDarkMode()"> 🌓 Cambia Tema</button>
     </header>
 
     <section class="bio">
         <h2>Chi sono</h2>
-        <p>Sono un web developer junior appassionato di design pulito e funzionale. Creo siti semplici, responsive e moderni usando HTML e CSS. In costante crescita, sono pronto a lavorare su progetti reali.
+        <p>Sono un web developer junior appassionato di design pulito e funzionale. Creo siti semplici, responsive e moderni usando HTML e CSS e un po' di JavaScript. In costante crescita, sono pronto a lavorare su progetti reali.
 
         </p>
+    </section>
+    <section class="skills">
+        <h2>Competenze</h2>
+        <ul>
+            <li>✅ HTML5 e semantica</li>
+            <li>✅ CSS3 e Responsive Design</li>
+            <li>✅ JavaScript base (modifica DOM, funzioni, toggle, ecc.)</li>
+            <li>✅ UI/UX Design semplice e leggibile</li>
+        </ul>
     </section>
 
     <section class="works">
         <h2>I miei lavori</h2>
         <ul>
         <li><strong>Sito vetrina per un Barbiere</strong> - Progetto dimostrativo HTML/CSS responsive</li>
-        <li><strong>Lading Page per Prodotto Naturale</strong> - Esempio di design moderno con colori personalizzati</li>
+        <li><strong>Landing Page per Prodotto Naturale</strong> - Esempio di design moderno con colori personalizzati</li>
         <li><strong>Mini Portfolio Personale</strong> - Questa pagina!</li>         
     </ul>
     </section>
@@ -83,5 +112,10 @@
     <footer>
        <p>&copy; 2025 Francesco. Tutti i diritti riservati.</p>
     </footer>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
 </body>
 </html>
